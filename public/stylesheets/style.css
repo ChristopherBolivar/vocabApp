@@ -1,8 +1,15 @@
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
+  margin: 0 auto; }
 
 a {
   color: #00B7FF; }
+
+#form input, #form label, #form button {
+  display: block;
+  margin: 0 auto; }
+
+#form label, #form p, #form button {
+  text-align: center; }
 
 /*# sourceMappingURL=style.css.map */

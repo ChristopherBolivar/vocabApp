@@ -1,91 +1,83 @@
 // routes/auth-routes.js
 const express = require("express");
 const router = express.Router();
-
-// User model
+const flash = require("connect-flash")
+const bcrypt  = require('bcrypt');
 const User = require("../models/userModel");
 
-// Bcrypt to encrypt passwords
-const bcrypt = require("bcrypt");
-const bcryptSalt = 10;
+
 
 router.get("/signup", (req, res, next) => {
   res.render("auth/signup");
 });
 
-router.post("/signup", (req, res, next) => {
+router.post('/signup', (req, res, next)=>{
+
   const username = req.body.username;
   const password = req.body.password;
+  const salt  = bcrypt.genSaltSync(10);
+  const hash = bcrypt.hashSync(password, salt);
 
-  if (username === "" || password === "") {
-    res.render("auth/signup", { message: "Indicate username and password" });
-    return;
-  }
 
-  User.findOne({ username })
-  .then(user => {
-    if (user !== null) {
-      res.render("auth/signup", { message: "The username already exists" });
-      return;
-    }
 
-    const salt = bcrypt.genSaltSync(bcryptSalt);
-    const hashPass = bcrypt.hashSync(password, salt);
-
-    const newUser = new User({
-      username,
-      password: hashPass
-    });
-
-    newUser.save((err) => {
-      if (err) {
-        res.render("auth/signup", { message: "Something went wrong" });
-      } else {
-        res.redirect("/");
-      }
-    });
+  User.create({
+      username: username,
+      password: hash
   })
-  .catch(error => {
-    next(error)
+  .then(()=>{
+
+      res.redirect('/')
+
   })
-});
+  .catch((err)=>{
+      next(err)
+  })
+})
+
+
+
+
 router.get("/login", (req, res, next) => {
   res.render("auth/login");
 });
 
-router.post("/login", (req, res, next) => {
-  const theUsername = req.body.username;
-  const thePassword = req.body.password;
 
-  if (theUsername === "" || thePassword === "") {
-    res.render("auth/login", {
-      errorMessage: "Please enter both, username and password to sign up."
-    });
-    return;
-  }
+router.post('/login', (req, res, next)=>{
+  const username = req.body.username;
+  const password = req.body.password;
 
-  User.findOne({ "username": theUsername })
-  .then(user => {
-      if (!user) {
-        res.render("auth/login", {
-          errorMessage: "The username doesn't exist."
-        });
-        return;
-      }
-      if (bcrypt.compareSync(thePassword, user.password)) {
-        // Save the login in the session!
-        req.session.currentUser = user;
-        res.redirect("/profile");
-      } else {
-        res.render("auth/login", {
-          errorMessage: "Incorrect password"
-        });
-      }
-  })
-  .catch(error => {
-    next(error);
-  })
-});
+  // we are trying to find a user who's username is equal to the usernam variable we just created
+User.findOne({ username: username })
+.then(userfromDB => {
+    if (!userfromDB) {
+
+          req.flash('error', 'sorry that username doesnt exist');
+          // this is the same as doing the line below, just that flash does not allow us to interact with the object directly so it has special getters & setters
+          // req.flash.error = 'sorry that username doesnt exist'
+
+      res.redirect('/login');
+    }
+    if (bcrypt.compareSync(password, userfromDB.password)) {
+      // Save the login in the session!
+      req.session.currentuser = userfromDB;
+      // this is the magic ^ line of code that actually logse you in
+      res.redirect("/profile");
+    } else {
+        res.redirect('/')
+    }
+})
+.catch(error => {
+  next(error);
+})
+
+
+
+
+})
+
+
+
+
 
 router.get("/logout", (req, res, next) => {
   req.session.destroy((err) => {
@@ -93,6 +85,13 @@ router.get("/logout", (req, res, next) => {
     res.redirect("/login");
   });
 });
+
+router.get('/profile', (req, res, next)=>{
+
+      
+      res.render('user/profile', {theUser: req.session.currentuser})
+   
+  })
 
 
 module.exports = router;

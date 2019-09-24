@@ -7,10 +7,9 @@
   <label for="password">Password</label>
   <input type="password" name="password">
 
-  {{#if errorMessage }}
-    <div class="error-message">{{ errorMessage }}</div>
-  {{/if}}
-
+   {{#if errorMessage}}
+    <div>{{errorMessage}}</div>
+    {{/if}}
   <button>Sign in</button>
 
   <p class="account-message">
