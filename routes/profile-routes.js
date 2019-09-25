@@ -1,25 +1,58 @@
 const express = require('express');
-const router  = express.Router();
+const router = express.Router();
 const User = require("../models/userModel");
 const Card = require("../models/flashcardModel");
 const axios = require('axios');
 
 router.get('/deck/:id', (req, res, next) => {
-  Card.findById(req.params.id).then((deckData)=>{
-  deckData.word.forEach(element => {
-    console.log("============?=====>>>>>>",element)
 
-  axios.get('https://www.dictionaryapi.com/api/v3/references/collegiate/json/' + element + '?key=ee67d907-7224-4430-a548-5dffdc6214eb').then((data)=>{
+  Card.findById(req.params.id).then((deckData) => {
 
-console.log(data.data[0].shortdef)
-    
-  res.render('user/deck', {data: deckData, def: data.data[0].shortdef});
 
-  }).catch(err => next(err));
 
-  });
+      let newStuff = deckData.word.map((element) => {
+        return axios.get('https://www.dictionaryapi.com/api/v3/references/collegiate/json/' + element + '?key=ee67d907-7224-4430-a548-5dffdc6214eb')
+          .then((theDef) => {
+            return ((theDef.data[0].shortdef))
 
-  }).catch(err => next(err));
+          })
+          .catch((err) => {
+            console.log(err)
+          })
+      })
+
+
+
+      Promise.all(newStuff)
+        .then((arrayOfDefs) => {
+          let wordDefs = []
+         arrayOfDefs.forEach((element,i)=>{
+           element = element.join("; ")
+          wordDefs.push(
+            {
+            word: deckData.word[i],
+            def: element
+            }
+          )
+         })
+
+         console.log(wordDefs, "<=========")
+
+
+
+
+
+          res.render('user/deck', {
+            data: wordDefs
+          });
+        })
+        .catch((err) => {
+          next(err)
+        })
+
+
+    })
+    .catch(err => next(err));
 });
 
 module.exports = router;
