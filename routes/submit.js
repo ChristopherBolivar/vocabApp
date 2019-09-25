@@ -11,14 +11,15 @@ router.post('/submit', (req, res, next)=>{
   
   const quizname = req.body.quizname;
   const words = req.body.words;
+
+  console.log("===>+>+>++>+>+>+> ")
   
-  console.log("===>+>+>++>+>+>+> ", words)
-  console.log("===============>> ", req.session.theuser)
+  console.log("===>+>+>++>+>+>+> ", req.session.currentuser)
 
   Card.create({
       name: quizname,
       word: words,
-      // creator: req.session
+      creator: req.session.currentuser
   })
   .then(()=>{
 
