@@ -1,11 +1,70 @@
-Hello Welcome, {{theUser.username}}
-<h2>Create new deck:</h2>
-<form id="createDeckForm" method="POST" action="/" >
-<input id="quizname" type="text" name="quizName">
-<div id="wordList">
+{{#if theUser}}
 
+
+<div class="container-fluid p-0">
+<div class="row p-0">
+  <div class="col-3 side-nav ">
+    <div class="row mx-auto welcome-user">
+        <div class="col-6">
+          <h6>Welcome Back,</h6>
+        </div>
+        <div class="col-6">
+          <h6>{{theUser.username}}</h6>
+        </div>
+    </div>
+    <div class="side-menu">
+      <p class="text-center">menu</p>
+    </div>
+  </div>
+   <div class="col-9">
+      <h3>Flashcard Decks:</h3>
+        {{#if showDecks}}
+        {{#each showDecks}}
+          <li>
+            {{this.name}}
+          </li>
+        {{#each this.word}}
+          <p>
+            {{this}}
+          </p>
+        {{/each}}
+
+        {{/each}}
+        {{else}}
+            <form id="createDeckForm" method="POST" action="/" >
+            
+            <input id="quizname" type="text" name="quizName">
+            <div id="wordList">
+
+            </div>
+
+            </form>
+            <button class="create" id="newWord">New Word</button>
+            <button class="create" id="submitWords" type='submit'>ADD WORDS</button>
+
+      {{/if}}
+  </div>
 </div>
+</div>
+{{else}}
+<form action="/login" method="POST">
+  <h2 class="text-center">Login</h2>
 
+  <label for="username">Username</label>
+  <input type="text" name="username">
+
+  <label for="password">Password</label>
+  <input type="password" name="password">
+
+   {{#if errorMessage}}
+    <div>{{errorMessage}}</div>
+    {{/if}}
+  <button>Sign in</button>
+
+  <p class="account-message">
+    Don't have an account? <a href="/signup">Sign up</a>
+  </p>
 </form>
-<button id="newWord">New Word</button>
-<button id="submitWords" type='submit'>ADD WORDS</button>
+{{/if}}
+
+

@@ -33,9 +33,10 @@ submit.addEventListener('click', (e) =>{
   console.log("this is the quiz name ))))))))))))))) ", document.querySelector('#quizname').value);
   
   setTimeout(() => {
-    axios.post(`http://localhost:3000/submit`, {words: wordArr, quizname: document.querySelector('#quizname').value}).then(a =>{
-      console.log(a, "hello")
+    axios.post(`http://localhost:3000/submit`, {words: wordArr, quizname: document.querySelector('#quizname').value})
+    .then(a =>{
+      console.log('Succes')
   }, 1000)
-  })//.catch(err => next(err));
+  }).catch(err => console.log(err));
   
 })

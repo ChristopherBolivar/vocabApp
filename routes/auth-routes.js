@@ -4,6 +4,7 @@ const router = express.Router();
 const flash = require("connect-flash")
 const bcrypt  = require('bcrypt');
 const User = require("../models/userModel");
+const Card = require("../models/flashcardModel");
 
 
 
@@ -61,7 +62,7 @@ User.findOne({ username: username })
       // Save the login in the session!
       req.session.currentuser = userfromDB;
       // this is the magic ^ line of code that actually logse you in
-      res.redirect("/profile");
+      res.redirect(`/profile/${userfromDB._id}`);
     } else {
         res.redirect('/')
     }
@@ -86,11 +87,12 @@ router.get("/logout", (req, res, next) => {
   });
 });
 
-router.get('/profile', (req, res, next)=>{
+router.get('/profile/:id', (req, res, next)=>{
 
-      
-      res.render('user/profile', {theUser: req.session.currentuser})
-   
+    Card.find({ creator: `${req.params.id}`}).then((decks)=>{
+      console.log(decks)
+      res.render('user/profile', {theUser: req.session.currentuser, showDecks: decks})
+    })
   })
 
 

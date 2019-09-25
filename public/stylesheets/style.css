@@ -1,15 +1,23 @@
-body {
-  padding: 50px;
-  margin: 0 auto; }
-
 a {
   color: #00B7FF; }
 
-#form input, #form label, #form button {
+form input, form label, form button, .create {
   display: block;
   margin: 0 auto; }
 
-#form label, #form p, #form button {
+form label, form p, form button {
   text-align: center; }
+
+.side-nav {
+  background: navy;
+  width: 80%;
+  color: #fff;
+  height: 100vh; }
+
+.welcome-user {
+  padding: .2rem; }
+
+.side-menu:hover {
+  background-color: lightslategrey; }
 
 /*# sourceMappingURL=style.css.map */

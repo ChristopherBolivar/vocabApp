@@ -18,7 +18,7 @@ console.log("this is the req. body >>><<<<<<>>>>><<<<>> ", req.body)
   Card.create({
       name: quizname,
       word: words,
-      creator: req.session.currentuser._id
+      creator: req.session.currentuser._id,
   })
   .then(()=>{
 
