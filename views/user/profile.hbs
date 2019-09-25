@@ -19,17 +19,13 @@
    <div class="col-9">
       <h3>Flashcard Decks:</h3>
         {{#if showDecks}}
-        {{#each showDecks}}
+        <ul>
+          {{#each showDecks}}
           <li>
-            {{this.name}}
+           <a href="/deck/{{this._id}}">{{this.name}}</a>
           </li>
-        {{#each this.word}}
-          <p>
-            {{this}}
-          </p>
         {{/each}}
-
-        {{/each}}
+        </ul>
         {{else}}
             <form id="createDeckForm" method="POST" action="/" >
             

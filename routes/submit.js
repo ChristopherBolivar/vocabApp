@@ -8,17 +8,17 @@ router.get('/submit', (req, res, next) => {
 });
 
 router.post('/submit', (req, res, next)=>{
-console.log("this is the req. body >>><<<<<<>>>>><<<<>> ", req.body)
   
   const quizname = req.body.quizname;
   const words = req.body.words;
   
-  console.log("=============== ", words)
+  console.log("===>+>+>++>+>+>+> ", words)
+  console.log("===============>> ", req.session.theuser)
 
   Card.create({
       name: quizname,
       word: words,
-      creator: req.session.currentuser._id,
+      // creator: req.session
   })
   .then(()=>{
 

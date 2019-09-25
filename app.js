@@ -79,6 +79,7 @@ const index = require('./routes/index');
 app.use('/', index);
 app.use('/', require('./routes/auth-routes.js'));
 app.use('/', require('./routes/submit.js'));
+app.use('/', require('./routes/profile-routes.js'));
 
 
 module.exports = app;
