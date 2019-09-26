@@ -25,9 +25,8 @@ router.post('/signup', (req, res, next)=>{
       username: username,
       password: hash
   })
-  .then(()=>{
-
-      res.redirect('/')
+  .then((a)=>{
+      res.redirect('/login')
 
   })
   .catch((err)=>{
@@ -90,7 +89,8 @@ router.get("/logout", (req, res, next) => {
 router.get('/profile/:id', (req, res, next)=>{
 
     Card.find({ creator: `${req.params.id}`}).then((decks)=>{
-      console.log(decks)
+      console.log(decks[0].name, "<=========")
+
       res.render('user/profile', {theUser: req.session.currentuser, showDecks: decks})
     })
   })

@@ -1,33 +1,46 @@
 {{#if theUser}}
 
 
-<div class="container-fluid p-0">
+<div class="container p-0 mx-auto">
 <div class="row p-0">
-  <div class="col-3 side-nav ">
-    <div class="row mx-auto welcome-user">
-        <div class="col-6">
-          <h6>Welcome Back,</h6>
+        <div class="col-4">
+          <h6>Welcome Back,{{theUser.username}}</h6>
         </div>
-        <div class="col-6">
-          <h6>{{theUser.username}}</h6>
-        </div>
-    </div>
-    <div class="side-menu">
+       
+      <div class="text-center col-4">
         <a href="/logout">
-          <p class="text-center">logout</p>
+          logout
         </a>
-    </div>
+        </div>
+        <div class="text-center col-4">
+        <a href="/create-new-deck">
+          Create Deck
+        </a>
+        </div>
+      
   </div>
-   <div class="col-9">
+  </div>
+  <div class="container p-0 mx-auto">
+   
       <h3>Flashcard Decks:</h3>
         {{#if showDecks}}
-        <ul>
+        <div class="container">
           {{#each showDecks}}
-          <li>
-           <a href="/deck/{{this._id}}">{{this.name}}</a>
-          </li>
+
+       <div class="row">
+          <div class="col-4">
+           Deck Name:<a href="/deck/{{this._id}}">{{this.name}}</a>
+          </div>
+          <div class="col-6">
+           {{this.created_at}}
+          </div>
+          <div class="col-2">
+            <a data-id = "{{this._id}}" href="/edit-deck/{{this._id}}">Edit</a>
+          </div>
+
+        </div>
         {{/each}}
-        </ul>
+        </div>
         {{else}}
             <form id="createDeckForm" method="POST" action="/" >
             
@@ -41,8 +54,7 @@
             <button class="create" id="submitWords" type='submit'>ADD WORDS</button>
 
       {{/if}}
-  </div>
-</div>
+  
 </div>
 {{else}}
 <form action="/login" method="POST">
@@ -57,7 +69,9 @@
    {{#if errorMessage}}
     <div>{{errorMessage}}</div>
     {{/if}}
-  <button>Sign in</button>
+  <div class="mx-auto text-center mt-2">
+    <button class="btn btn-primary mx-auto text-center">Sign in</button>
+  </div>
 
   <p class="account-message">
     Don't have an account? <a href="/signup">Sign up</a>

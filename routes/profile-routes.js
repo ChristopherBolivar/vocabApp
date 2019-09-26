@@ -27,7 +27,7 @@ router.get('/deck/:id', (req, res, next) => {
         .then((arrayOfDefs) => {
           let wordDefs = []
          arrayOfDefs.forEach((element,i)=>{
-           element = element.join("; ")
+          //  element = element.join(";")
           wordDefs.push(
             {
             word: deckData.word[i],
@@ -54,5 +54,24 @@ router.get('/deck/:id', (req, res, next) => {
     })
     .catch(err => next(err));
 });
+
+
+
+
+router.get('/create-new-deck', (req, res, next) => {
+ 
+  res.render('user/create-new');
+});
+
+
+router.get('/edit-deck/:id', (req, res, next) => {
+  console.log(req.params.id)
+  Card.findById(req.params.id).then(card =>{
+    console.log(card.name,"=-=-=-=-=-=-=-=-=-")
+    res.render('user/edit', {card:card});
+  })
+});
+
+
 
 module.exports = router;

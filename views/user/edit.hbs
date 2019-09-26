@@ -1,0 +1,27 @@
+{{#if theUser}}
+
+<form id="createDeckForm" method="POST" action="/" >
+            
+    <input value="{{card.name}}" id="quizname" type="text" name="quizName">
+   
+        <div id="wordList">
+           {{#each card.word}}
+              <input class="edit-fields" value="{{this}}" type="text">
+           {{/each}}
+
+     </div>
+
+ </form>
+ <button class="create btn btn-primary" id="newWordUpdate">New Word</button>
+ <button data-id = "{{card._id}}" class="create btn btn-success" id="updateWords" type='submit'>
+     <a href="/profile/{{theUser._id}}">
+     Update Deck
+     </a>
+ </button>
+ <a id="goback" href="/profile/{{theUser._id}}">
+     go back
+</a>
+ {{else}}
+ sorry
+{{/if}}
+<script src="../../javascripts/update.js"></script>

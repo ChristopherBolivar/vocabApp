@@ -1,3 +1,6 @@
+body {
+  margin: 0 auto; }
+
 a {
   color: #00B7FF; }
 
@@ -10,9 +13,7 @@ form label, form p, form button {
 
 .side-nav {
   background: navy;
-  width: 80%;
-  color: #fff;
-  height: 100vh; }
+  color: #fff; }
 
 .welcome-user {
   padding: .2rem; }

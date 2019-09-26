@@ -1,0 +1,18 @@
+{{#if theUser}}
+
+<form class="mt-3" id="createDeckForm" method="POST" action="/" >
+    <label>Name the Deck of Cards:</label>      
+    <input id="quizname" type="text" name="quizName">
+        <div id="wordList">
+
+     </div>
+
+ </form>
+   
+<div class="mr-auto mr-auto mt-3 text-center">
+   <button class="create btn btn-success  d-inline" id="newWord">Add Word</button>
+   <button class="create btn btn-primary d-inline " id="submitWords" type='submit'>Create Deck</button>
+</div>
+{{else}}
+ sorry
+{{/if}}

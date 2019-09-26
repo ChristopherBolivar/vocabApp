@@ -18,7 +18,7 @@ newWord.addEventListener('click', () => {
 
 let somthing = document.createElement('div')
 
-  somthing.innerHTML= `<input type="text" id="input${wordCount}" >`
+  somthing.innerHTML= `<input class="mt-3" placeholder="Type word #${wordCount + 1}" type="text" id="input${wordCount}" >`
   wordList.appendChild(somthing)
   wordCount++
 })
@@ -29,14 +29,20 @@ submit.addEventListener('click', (e) =>{
     console.log(i)
     wordArr.push(document.querySelector(`#input${i}`).value)
   }
-  console.log(">>>>>>>>>>>>>>>> ", wordArr)
-  console.log("this is the quiz name ))))))))))))))) ", document.querySelector('#quizname').value);
   
   setTimeout(() => {
     axios.post(`http://localhost:3000/submit`, {words: wordArr, quizname: document.querySelector('#quizname').value})
     .then(a =>{
       console.log('Succes')
   }, 1000)
-  }).catch(err => console.log(err));
+  })
   
 })
+
+
+
+const updateFields = document.getElementsByClassName("edit-fields")
+const updateWords = document.getElementById("updateWords")
+updateWords.addEventListener('click',()=>{
+    console.log(updateFields.length,"++++=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=++++++++++")
+}).catch(err=> console.log(err))
