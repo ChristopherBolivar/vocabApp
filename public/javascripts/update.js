@@ -26,9 +26,9 @@ updateWords.addEventListener('click',(e)=>{
       console.log('Succes')
     })
   }, 1000)
-  })
+  
 
-  goBack.click()
+  document.querySelector("#goback").click()
   console.log("did it work?")
 })
 
@@ -41,3 +41,4 @@ newWordUpdate.addEventListener('click', () => {
     wordList.appendChild(somthing)
     wordCount++
   })
+})
