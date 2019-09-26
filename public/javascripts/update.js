@@ -28,8 +28,8 @@ updateWords.addEventListener('click',(e)=>{
   }, 1000)
   
 
-  document.querySelector("#goback").click()
-  console.log("did it work?")
+  // document.querySelector("#goback").click()
+  // console.log("did it work?")
 })
 
 
