@@ -45,4 +45,4 @@ const updateFields = document.getElementsByClassName("edit-fields")
 const updateWords = document.getElementById("updateWords")
 updateWords.addEventListener('click',()=>{
     console.log(updateFields.length,"++++=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=++++++++++")
-}).catch(err=> console.log(err))
+})

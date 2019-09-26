@@ -26,7 +26,7 @@ updateWords.addEventListener('click',(e)=>{
       console.log('Succes')
     })
   }, 1000)
-  }).catch(err => console.log(err));
+  })
 
   goBack.click()
   console.log("did it work?")

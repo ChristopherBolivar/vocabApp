@@ -26,10 +26,22 @@
         {{#if showDecks}}
         <div class="container">
           {{#each showDecks}}
+           <div class="row">
+          <div class="col-4">
+           Deck Name
+          </div>
+          <div class="col-6">
+           Date Created
+          </div>
+          <div class="col-2">
+           Edit/Delete
+          </div>
+
+        </div>
 
        <div class="row">
           <div class="col-4">
-           Deck Name:<a href="/deck/{{this._id}}">{{this.name}}</a>
+           <a href="/deck/{{this._id}}">{{this.name}}</a>
           </div>
           <div class="col-6">
            {{this.created_at}}
