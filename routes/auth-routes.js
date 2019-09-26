@@ -94,14 +94,7 @@ router.get('/profile/:id', (req, res, next)=>{
       res.render('user/profile', {theUser: req.session.currentuser, showDecks: decks})
     })
   })
-  router.get('/edit-profile/:id', (req, res, next)=>{
-
-    Card.find({ creator: `${req.params.id}`}).then((decks)=>{
-      console.log(decks[0].name, "<=========")
-
-      res.render('user/edit-profile', {theUser: req.session.currentuser, showDecks: decks})
-    })
-  })
+ 
 
 
 

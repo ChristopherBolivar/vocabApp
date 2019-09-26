@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const User = require("../models/userModel");
 const Card = require("../models/flashcardModel");
+const bcrypt  = require('bcrypt');
 const axios = require('axios');
 
 router.get('/deck/:id', (req, res, next) => {
@@ -73,13 +74,32 @@ router.get('/edit-deck/:id', (req, res, next) => {
 
 router.get('/edit-profile/:id', (req, res, next)=>{
 
-  Card.find({ creator: `${req.params.id}`}).then((decks)=>{
-    console.log(decks[0].name, "<=========")
-
-    res.render('user/edit-profile', {theUser: req.session.currentuser, showDecks: decks})
+  User.findById(req.params.id).then((user)=>{
+    res.render('user/edit-profile', {theUser: req.session.currentuser})
   })
+  
 })
+router.post('/edit-profile/:id', (req,res,next)=>{
+  const newUsername = req.body.username;
+  const newPassword = req.body.password;
+  const salt  = bcrypt.genSaltSync(10);
+  const hash = bcrypt.hashSync(newPassword, salt);
+  User.findByIdAndUpdate(req.params.id, {
 
+    username: newUsername,
+    password: hash
+
+})
+.then((result)=>{
+    res.redirect('/logout')
+})
+.catch((err)=>{
+    next(err);
+})
+})
+router.get('/profile' ,(req,res,next)=>{
+  res.redirect('/profile/'+req.session.currentuser._id)
+})
 
 
 module.exports = router;

@@ -1,1 +1,12 @@
-test
+ <form id="updateProfileForm" method="POST" action="/edit-profile/{{theUser._id}}" >
+            <label>Username: 
+              <input name="username" type="text" value="{{theUser.username}}">
+            </label>
+            <label>New Password:
+              <input placeholder="new password" type="password" name="password">
+            </label>
+            
+
+            <button class="create" id="updateUser" type='submit'>Update</button>
+ 
+ </form>
