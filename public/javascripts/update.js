@@ -33,11 +33,6 @@ updateWords.addEventListener('click',(e)=>{
 })
 
 
-
-
-
-
-}, false);
 newWordUpdate.addEventListener('click', () => {
   
   let somthing = document.createElement('input')
