@@ -1,8 +1,20 @@
 body{
   margin: 0 auto;
 }
-a {
-  color: #00B7FF;
+a,a:hover,a:visited {
+  color: inherit;
+  text-decoration: none;
+}
+.nav{
+  background: lightslategray;
+  color: #fff;
+  padding: .3rem;
+}
+.nav-inner{
+  width: 80%;
+  padding: .5rem;
+  margin: 0 auto;
+
 }
 
 form input, form label,form button,.create{
@@ -12,10 +24,7 @@ form input, form label,form button,.create{
 form label,form p,  form button{
   text-align: center;
 }
-.side-nav{
-  background: navy;
-  color: #fff;
-}
+
 .welcome-user{
   padding: .2rem;
 }
@@ -67,8 +76,25 @@ form label,form p,  form button{
 .flip-card-back {
   background-color: #fff;
   text-align: left;
-
   padding: 1rem 3rem;
   transform: rotateX(180deg);
   overflow: scroll;
 } 
+.deck-header {
+  background: lightslategray;
+  padding: .5rem;
+  color:#fff;
+  margin: 0 0 3rem 0;
+}
+.decks-list:nth-child(odd) {
+ background: rgba(207, 207, 207,1);
+}
+.decks-list div {
+  margin: 1rem 0;
+}
+.deck-body{
+  padding: 0;
+  border-right: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  border-left: 1px solid #ccc;
+}

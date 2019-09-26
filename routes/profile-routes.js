@@ -67,10 +67,18 @@ router.get('/create-new-deck', (req, res, next) => {
 router.get('/edit-deck/:id', (req, res, next) => {
   console.log(req.params.id)
   Card.findById(req.params.id).then(card =>{
-    console.log(card.name,"=-=-=-=-=-=-=-=-=-")
     res.render('user/edit', {card:card});
   })
 });
+
+router.get('/edit-profile/:id', (req, res, next)=>{
+
+  Card.find({ creator: `${req.params.id}`}).then((decks)=>{
+    console.log(decks[0].name, "<=========")
+
+    res.render('user/edit-profile', {theUser: req.session.currentuser, showDecks: decks})
+  })
+})
 
 
 

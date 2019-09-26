@@ -1,39 +1,54 @@
 {{#if theUser}}
 
 
-<div class="container p-0 mx-auto">
-<div class="row p-0">
-        <div class="col-4">
+<div class="container-fluid p-0 mx-auto nav">
+    <div class="mx-auto nav-inner">
+      <div class="row ">
+        <div class="col-8">
           <h6>Welcome Back,{{theUser.username}}</h6>
         </div>
-       
-      <div class="text-center col-4">
+        
+      <div class="text-center col-4 ">
+        <a class="m-4" href="/edit-profile/{{theUser._id}}">
+          <u>Edit Profile</u>
+        </a>
         <a href="/logout">
-          logout
+          <u>Logout</u>
         </a>
+       
         </div>
-        <div class="text-center col-4">
-        <a href="/create-new-deck">
-          Create Deck
-        </a>
-        </div>
+        
       
-  </div>
+      </div>
+    </div>
   </div>
   <div class="container p-0 mx-auto">
    
-      <h3>Flashcard Decks:</h3>
         {{#if showDecks}}
-        <div class="container">
+
+        <div class="deck-body">
+        <div class="container  mt-4 p-0">
+          <div class="row deck-header">
+            <div class="col-8">
+              <h3>Flashcard Decks:</h3>
+            </div>
+
+        <div class="text-center col-4">
+        <a class="btn btn-success" href="/create-new-deck">
+          Create New Deck
+        </a>
+        </div>
+          </div>
+          <div class="container deck-body">
           <div class="row">
-          <div class="col-4">
-           Deck Name
+          <div class="col-4 pl-4">
+           Deck Name:
           </div>
           <div class="col-6">
-           Date Created
+           Date Created:
           </div>
           <div class="col-2">
-           Edit/Delete
+           Edit/Delete:
           </div>
         </div>
 
@@ -42,19 +57,20 @@
            
         
 
-       <div class="row">
+       <div class="row decks-list">
           <div class="col-4">
-           <a href="/deck/{{this._id}}">{{this.name}}</a>
+           <u><a href="/deck/{{this._id}}">{{this.name}}</a></u>
           </div>
           <div class="col-6">
            {{this.created_at}}
           </div>
           <div class="col-2">
-            <a data-id = "{{this._id}}" href="/edit-deck/{{this._id}}">Edit</a>
+            <u><a data-id = "{{this._id}}" href="/edit-deck/{{this._id}}">Edit</a></u>
           </div>
 
         </div>
         {{/each}}
+        </div>
         </div>
         {{else}}
             <form id="createDeckForm" method="POST" action="/" >
