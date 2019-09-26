@@ -21,7 +21,7 @@ updateWords.addEventListener('click',(e)=>{
 
   const theID = e.currentTarget.dataset.id;
   setTimeout(() => {
-    axios.post(`http://localhost:3000/update`, {words: updatedWords, cardId: theID, quizname: document.querySelector('#quizname').value})
+    axios.post(`https://ironvocabapp.herokuapp.com/update`, {words: updatedWords, cardId: theID, quizname: document.querySelector('#quizname').value})
     .then(a =>{
       console.log('Succes')
     })
