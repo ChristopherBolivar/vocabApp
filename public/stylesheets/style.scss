@@ -1,5 +1,6 @@
 body{
   margin: 0 auto;
+  padding: 0;
 }
 a,a:hover,a:visited {
   color: inherit;
@@ -107,9 +108,8 @@ form label,form p,  form button{
   color: #fff;
 }
 .homepage{
-  width: 80%;
   color: #000;
+  padding: 2rem;
   border-radius: 5px;
   background: #fff;
-  margin: 0 auto;
 }
