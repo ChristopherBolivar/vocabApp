@@ -1,7 +1,12 @@
-<h1 class="text-center">{{title}}</h1>
-<p class="text-center mb-3">the perfect app for vocabulary learning</p>
-{{#if theUser}}
+<div class="home-body">
+  <h1 class="text-center mt-4">{{title}}</h1>
+<p class="text-center mb-4">the perfect app for vocabulary learning</p>
+<div class="homepage">
+  {{#if theUser}}
 {{> menu}}
 {{else}}
 {{> login}}
 {{/if}}
+
+</div>
+</div>
