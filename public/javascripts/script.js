@@ -10,16 +10,18 @@ var wordList = document.querySelector('#wordList')
 var submit = document.querySelector('#submitWords')
 var deckName = document.querySelector('#quizName')
 var wordArr = []
-var wordCount = 0
 // var addNewWord = document.createElement(`<input id="input${wordCount}" type="text">`)
 var addNewWord = document.createElement(`INPUT`)
 
+var wordCount = 0
 newWord.addEventListener('click', () => {
 
-let somthing = document.createElement('div')
 
-  somthing.innerHTML= `<input class="mt-3" placeholder="Type word #${wordCount + 1}" type="text" id="input${wordCount}" >`
-  wordList.appendChild(somthing)
+let somthing = document.createElement('input')
+somthing.setAttribute("class", "edit-fields mt-2")
+somthing.setAttribute("placeholder", "New Definition Word")
+somthing.setAttribute("id", `input${wordCount}`)
+wordList.appendChild(somthing)
   wordCount++
 })
 
@@ -34,8 +36,7 @@ submit.addEventListener('click', (e) =>{
     axios.post(`https://ironvocabapp.herokuapp.com/submit`, {words: wordArr, quizname: document.querySelector('#quizname').value})
     .then(a =>{
       console.log('Succes')
-
-  document.querySelector("#home").click()
+      document.querySelector("#home").click()
   }, 1000)
   })
 })
