@@ -4,7 +4,7 @@ const Card = require("../models/flashcardModel");
 
 
 router.get('/submit', (req, res, next) => {
-  res.redirect('/profile');
+  res.redirect('/profile/');
 });
 
 router.post('/submit', (req, res, next)=>{
@@ -20,8 +20,9 @@ router.post('/submit', (req, res, next)=>{
       creator: req.session.currentuser
   })
   .then(()=>{
-
-      res.redirect('/profile')
+      console.log("should word")
+      res.redirect('/profile/')
+      document.getElementById("home").click()
 
   })
   .catch((err)=>{

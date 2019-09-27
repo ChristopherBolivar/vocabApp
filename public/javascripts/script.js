@@ -34,9 +34,10 @@ submit.addEventListener('click', (e) =>{
     axios.post(`https://ironvocabapp.herokuapp.com/submit`, {words: wordArr, quizname: document.querySelector('#quizname').value})
     .then(a =>{
       console.log('Succes')
+
+  document.querySelector("#home").click()
   }, 1000)
   })
-  
 })
 
 

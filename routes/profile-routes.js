@@ -104,7 +104,9 @@ router.get('/profile', (req, res, next)=>{
   Card.find({ creator: `${req.session.currentuser._id}`}).then((decks)=>{
 
     res.render('user/profile', {theUser: req.session.currentuser, showDecks: decks})
-  })
+  }).catch((err)=>{
+    next(err)
+})
 })
 
 
