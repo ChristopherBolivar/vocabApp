@@ -34,7 +34,7 @@ router.get('/create-new-deck', (req, res, next) => {
 });
 
 router.get('/update', (req, res, next) => {
-  res.render('/profile');
+  res.redirect('/profile');
 });
 
 router.post('/update', (req, res, next)=>{

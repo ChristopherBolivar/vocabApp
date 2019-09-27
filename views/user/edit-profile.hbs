@@ -9,8 +9,8 @@
             </label>
             
 
-            <button class="create" id="updateUser" type='submit'>Update</button>
- 
+            <button class="btn btn-success text-center d-inline" id="updateUser" type='submit'>Update</button>
+            <a class="text-center btn btn-danger" href="/delete-user/{{theUser._id}}">Delete</a>
  </form>
  {{else}}
  {{> login}}

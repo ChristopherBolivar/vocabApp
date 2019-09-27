@@ -118,6 +118,15 @@ router.get('/delete-card/:id',(req,res,next)=>{
       next(err)
   })
 })
+router.get('/delete-user/:id',(req,res,next)=>{
+  User.findByIdAndRemove(req.params.id)
+  .then((result)=>{
+      res.redirect('/signup')
+  })
+  .catch((err)=>{
+      next(err)
+  })
+})
 
 
 module.exports = router;
