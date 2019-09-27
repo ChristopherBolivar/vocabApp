@@ -4,7 +4,7 @@ const Card = require("../models/flashcardModel");
 
 
 router.get('/submit', (req, res, next) => {
-  res.render('/profile');
+  res.redirect('/profile');
 });
 
 router.post('/submit', (req, res, next)=>{
@@ -13,7 +13,6 @@ router.post('/submit', (req, res, next)=>{
   const words = req.body.words;
 
   
-  // console.log("===>+>+>++>+>+>+> ", req.session.currentuser)
 
   Card.create({
       name: quizname,
