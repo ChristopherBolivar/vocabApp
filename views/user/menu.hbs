@@ -1,0 +1,24 @@
+<div class="container-fluid p-0 mx-auto nav">
+    <div class="mx-auto nav-inner">
+      <div class="row ">
+        <div class="col-8">
+          <h6>Welcome Back,     {{theUser.username}}</h6>
+        </div>
+        
+      <div class="text-center col-4 ">
+         <a class="mr-4" href="/profile/{{theUser._id}}">
+          <u>Home</u>
+        </a>
+        <a class="mr-4" href="/edit-profile/{{theUser._id}}">
+          <u>Edit Profile</u>
+        </a>
+        <a href="/logout">
+          <u>Logout</u>
+        </a>
+       
+        </div>
+        
+      
+      </div>
+    </div>
+  </div>

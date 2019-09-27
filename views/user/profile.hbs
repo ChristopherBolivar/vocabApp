@@ -1,30 +1,8 @@
 {{#if theUser}}
-
-
-<div class="container-fluid p-0 mx-auto nav">
-    <div class="mx-auto nav-inner">
-      <div class="row ">
-        <div class="col-8">
-          <h6>Welcome Back,{{theUser.username}}</h6>
-        </div>
-        
-      <div class="text-center col-4 ">
-        <a class="m-4" href="/edit-profile/{{theUser._id}}">
-          <u>Edit Profile</u>
-        </a>
-        <a href="/logout">
-          <u>Logout</u>
-        </a>
-       
-        </div>
-        
-      
-      </div>
-    </div>
-  </div>
+{{> menu}}
   <div class="container p-0 mx-auto">
    
-        {{#if showDecks}}
+        {{!-- {{#if showDecks}} --}}
 
         <div class="deck-body">
         <div class="container  mt-4 p-0">
@@ -66,13 +44,14 @@
           </div>
           <div class="col-2">
             <u><a data-id = "{{this._id}}" href="/edit-deck/{{this._id}}">Edit</a></u>
+            <u class="pl-3"><a data-id = "{{this._id}}" href="/delete-card/{{this._id}}">Delete</a></u>
           </div>
 
         </div>
         {{/each}}
         </div>
         </div>
-        {{else}}
+        {{!-- {{else}} --}}
             <form id="createDeckForm" method="POST" action="/" >
             
             <input id="quizname" type="text" name="quizName">
@@ -84,30 +63,11 @@
             <button class="create" id="newWord">New Word</button>
             <button class="create" id="submitWords" type='submit'>ADD WORDS</button>
 
-      {{/if}}
+      {{!-- {{/if}} --}}
   
 </div>
 {{else}}
-<form action="/login" method="POST">
-  <h2 class="text-center">Login</h2>
-
-  <label for="username">Username</label>
-  <input type="text" name="username">
-
-  <label for="password">Password</label>
-  <input type="password" name="password">
-
-   {{#if errorMessage}}
-    <div>{{errorMessage}}</div>
-    {{/if}}
-  <div class="mx-auto text-center mt-2">
-    <button class="btn btn-primary mx-auto text-center">Sign in</button>
-  </div>
-
-  <p class="account-message">
-    Don't have an account? <a href="/signup">Sign up</a>
-  </p>
-</form>
+{{> login}}
 {{/if}}
 
 

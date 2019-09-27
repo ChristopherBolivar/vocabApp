@@ -1,8 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-  console.log('IronGenerator JS imported successfully!');
 
-  var updatedWords = []
+var updatedWords = []
 var updateFields = document.getElementsByClassName("edit-fields")
 var updateWords = document.getElementById("updateWords")
 var goBack = document.querySelector("#goback")
@@ -28,7 +27,7 @@ updateWords.addEventListener('click',(e)=>{
   }, 1000)
   
 
-  // document.querySelector("#goback").click()
+  document.querySelector("#goback").click()
   // console.log("did it work?")
 })
 
@@ -36,8 +35,8 @@ updateWords.addEventListener('click',(e)=>{
 newWordUpdate.addEventListener('click', () => {
   
   let somthing = document.createElement('input')
-    somthing.classList.add("edit-fields")
-    somthing.classList.add("mt-2")
+    somthing.setAttribute("class", "edit-fields mt-2")
+    somthing.setAttribute("placeholder", "New Definition Word")
     wordList.appendChild(somthing)
     wordCount++
   })

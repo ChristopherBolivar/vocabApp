@@ -75,10 +75,12 @@ app.use((req, res, next)=>{
 })
 
 const index = require('./routes/index');
+
 app.use('/', index);
 app.use('/', require('./routes/auth-routes.js'));
 app.use('/', require('./routes/submit.js'));
 app.use('/', require('./routes/profile-routes.js'));
-
+hbs.registerPartials(__dirname + '/views/auth');
+hbs.registerPartials(__dirname + '/views/user');
 
 module.exports = app;

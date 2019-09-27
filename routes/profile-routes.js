@@ -44,6 +44,7 @@ router.get('/deck/:id', (req, res, next) => {
 
 
           res.render('user/deck', {
+            cardData: deckData,
             data: wordDefs
           });
         })
@@ -97,8 +98,25 @@ router.post('/edit-profile/:id', (req,res,next)=>{
     next(err);
 })
 })
-router.get('/profile' ,(req,res,next)=>{
-  res.redirect('/profile/'+req.session.currentuser._id)
+
+
+router.get('/profile', (req, res, next)=>{
+  Card.find({ creator: `${req.session.currentuser._id}`}).then((decks)=>{
+
+    res.render('user/profile', {theUser: req.session.currentuser, showDecks: decks})
+  })
+})
+
+
+
+router.get('/delete-card/:id',(req,res,next)=>{
+  Card.findByIdAndRemove(req.params.id)
+  .then((result)=>{
+      res.redirect('/profile')
+  })
+  .catch((err)=>{
+      next(err)
+  })
 })
 
 

@@ -58,10 +58,12 @@ User.findOne({ username: username })
       res.redirect('/login');
     }
     if (bcrypt.compareSync(password, userfromDB.password)) {
+
+      console.log('===========8765432', userfromDB)
       // Save the login in the session!
       req.session.currentuser = userfromDB;
       // this is the magic ^ line of code that actually logse you in
-      res.redirect(`/profile/${userfromDB._id}`);
+      res.redirect(`/profile`);
     } else {
         res.redirect('/')
     }
@@ -79,6 +81,7 @@ User.findOne({ username: username })
 
 
 
+
 router.get("/logout", (req, res, next) => {
   req.session.destroy((err) => {
     // can't access session here
@@ -86,14 +89,7 @@ router.get("/logout", (req, res, next) => {
   });
 });
 
-router.get('/profile/:id', (req, res, next)=>{
 
-    Card.find({ creator: `${req.params.id}`}).then((decks)=>{
-      console.log(decks[0].name, "<=========")
-
-      res.render('user/profile', {theUser: req.session.currentuser, showDecks: decks})
-    })
-  })
  
 
 

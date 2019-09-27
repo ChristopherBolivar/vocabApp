@@ -1,27 +1,35 @@
 {{#if theUser}}
+{{> menu}}
 
-<form id="createDeckForm" method="POST" action="/" >
-            
-    <input value="{{card.name}}" id="quizname" type="text" name="quizName">
+<div class="text-center mb-4 mt-4">
+      
+     <h4>Editing Flashcard Deck:    <u>{{card.name}}</u></h4>
+    
+    
+</div>
+
+<form class="mt-6" id="createDeckForm" method="POST" action="/" >
+    <label>New name for Flashcard Deck:</label>    
+    <input  class="mt-2"value="{{card.name}}" id="quizname" type="text" name="quizName">
    
         <div id="wordList">
+            <label>Edit/Add New Words</label> 
            {{#each card.word}}
-              <input class="edit-fields" value="{{this}}" type="text">
+              <input class="edit-fields mt-2" value="{{this}}" type="text">
            {{/each}}
 
      </div>
 
  </form>
- <button class="create btn btn-primary" id="newWordUpdate">New Word</button>
- <button data-id = "{{card._id}}" class="create btn btn-success" id="updateWords" type='submit'>
+ <div class="mr-auto ml-auto mt-3 text-center">
+ <button class="create btn btn-primary d-inline" id="newWordUpdate">New Word</button>
+ <button data-id = "{{card._id}}" class="create btn btn-success d-inline" id="updateWords" type='submit'>
      <a href="/profile/{{theUser._id}}">
      Update Deck
      </a>
  </button>
- <a id="goback" href="/profile/{{theUser._id}}">
-     go back
-</a>
+ </div>
  {{else}}
- sorry
+{{> login}}
 {{/if}}
 <script src="../../javascripts/update.js"></script>
