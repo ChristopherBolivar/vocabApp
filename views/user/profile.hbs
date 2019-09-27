@@ -2,7 +2,7 @@
 {{> menu}}
   <div class="container p-0 mx-auto">
    
-        {{!-- {{#if showDecks}} --}}
+        {{#if showDecks}}
 
         <div class="deck-body">
         <div class="container  mt-4 p-0">
@@ -52,7 +52,7 @@
         </div>
         </div>
         {{else}}
-            <form id="createDeckForm" method="POST" action="/" >
+            <form id="createDeckForm" method="POST" action="/submit" >
             
             <input id="quizname" type="text" name="quizName">
             <div id="wordList">
