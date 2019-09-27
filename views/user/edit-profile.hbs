@@ -8,9 +8,11 @@
               <input placeholder="new password" type="password" name="password">
             </label>
             
-
+            
+        <div class="mr-auto ml-auto mt-3 text-center">
             <button class="btn btn-success text-center d-inline" id="updateUser" type='submit'>Update</button>
             <a class="text-center btn btn-danger" href="/delete-user/{{theUser._id}}">Delete</a>
+        </div>
  </form>
  {{else}}
  {{> login}}
