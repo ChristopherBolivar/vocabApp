@@ -22,7 +22,7 @@ router.post('/submit', (req, res, next)=>{
   })
   .then(()=>{
 
-      res.redirect('/')
+      res.redirect('/profile')
 
   })
   .catch((err)=>{
