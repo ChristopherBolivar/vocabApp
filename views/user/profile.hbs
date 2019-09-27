@@ -52,16 +52,23 @@
         </div>
         </div>
         {{else}}
+            <h5 class="mt-4 text-center">Hello! Looks like you have no flashcard decks yet</h5>
+
+            <h5 class="mb-4 text-center">Get started by creating your first deck</h5>
             <form id="createDeckForm" method="POST" action="/submit" >
-            
+            <label>Name of Flashcard Deck</label>
             <input id="quizname" type="text" name="quizName">
+            <label>Definition Words:</label>
             <div id="wordList">
+              
 
             </div>
 
             </form>
-            <button class="create" id="newWord">New Word</button>
-            <button class="create" id="submitWords" type='submit'>ADD WORDS</button>
+            <div class="text-center mx-auto">
+              <button class="btn btn-success d-inline" id="newWord">New Word</button>
+            <button class="btn btn-primary d-inline" id="submitWords" type='submit'>ADD WORDS</button>
+            </div>
 
       {{/if}}
   
